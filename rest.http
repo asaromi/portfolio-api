@@ -1,0 +1,9 @@
+### Sending Email API
+POST {{url}}/v1/email/send
+Content-Type: application/json
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
