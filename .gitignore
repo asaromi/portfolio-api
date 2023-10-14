@@ -3,10 +3,10 @@ yarn.lock
 package-lock.json
 
 # IDE files
-.idea
-.vscode
+.idea/
+.vscode/
 
-node_modules
+node_modules/
 
 ## .env files
 .env
