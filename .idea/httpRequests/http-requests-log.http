@@ -1,0 +1,112 @@
+GET http://api.portfolio.host
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T172400.200.json
+
+###
+
+GET http://api.portfolio.host/api
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T172336.404.html
+
+###
+
+GET http://api.portfolio.host/api
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T172311.404.html
+
+###
+
+POST http://api.portfolio.host/api/v1/email/send
+Content-Type: application/json
+Content-Length: 203
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
+
+<> 2023-10-14T151439.200.json
+
+###
+
+POST http://api.portfolio.host/api/v1/email/send
+Content-Type: application/json
+Content-Length: 203
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
+
+<> 2023-10-14T151123.200.json
+
+###
+
+POST http://api.portfolio.host/api/v1/email/send
+Content-Type: application/json
+Content-Length: 203
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
+
+<> 2023-10-14T150735.200.json
+
+###
+
+POST http://api.portfolio.host/api/v1/email/send
+Content-Type: application/json
+Content-Length: 203
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
+
+<> 2023-10-14T150539.200.json
+
+###
+
+POST http://api.portfolio.host/api/v1/email/send
+Content-Type: application/json
+Content-Length: 203
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "sabililmaromi@student.uns.ac.id",
+  "name": "Sabilil Maromi",
+  "message": "Hi, I want to contact you. Can you give me your active email to talk and consult for some projects? Thank you."
+}
+
+<> 2023-10-14T150240.200.json
+
+###
+
