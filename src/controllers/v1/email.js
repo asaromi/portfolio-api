@@ -1,4 +1,5 @@
 const Service = require('../../services/email')
+const {successResponse, errorResponse} = require('../../helpers/response')
 const emailService = new Service()
 
 exports.sendEmail = async (req, res) => {
@@ -11,9 +12,8 @@ exports.sendEmail = async (req, res) => {
       body,
     })
 
-    return res.status(200).json({ status: 'OK', message: `[${response}] Successfully sending email` })
+    return successResponse(res, {data: response})
   } catch (error) {
-    console.error('failed to send email', error)
-    return res.status(500).json({ status: 'ERROR', error: error.message })
+    return errorResponse(res, {error})
   }
 }
