@@ -18,7 +18,6 @@ exports.checkoutSession = async (req, res) => {
     console.log('trying generate checkout session')
 
     const session = await amazonStripeService.checkoutSession({email, items})
-    const ref = `users/${email}/orders/${session.id}`
     const data = {
       amount: session.amount_total / 100,
       amount_shipping: session.total_details.amount_shipping / 100,
@@ -26,8 +25,11 @@ exports.checkoutSession = async (req, res) => {
       timestamp: firestore.FieldValue.serverTimestamp()
     }
 
+    await firebaseService.firestoreSetDocument({data, ref: `users/${email}/orders/${session.id}` })
+
     console.log('trying add data', data)
     console.log('to document', ref)
+    console.log('returning session', session)
 
     return successResponse(res, {data: session})
   } catch (error) {
