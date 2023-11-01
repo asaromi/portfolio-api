@@ -5,7 +5,7 @@ const serviceAccount = require('../../../firebase.key.json')
 
 const FirebaseService = require('../../services/firebase')
 const StripeService = require('../../services/stripe')
-const amazonStripeService = new StripeService(NEXT_AMAZON.STRIPE_SK)
+const amazonStripeService = new StripeService(NEXT_AMAZON.STRIPE_SK, NEXT_AMAZON.APP_URL)
 const firebaseService = new FirebaseService(serviceAccount)
 const firestore = firebaseService.admin.firestore
 
