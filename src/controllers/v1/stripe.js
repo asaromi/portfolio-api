@@ -28,7 +28,6 @@ exports.checkoutSession = async (req, res) => {
     await firebaseService.firestoreSetDocument({data, ref: `users/${email}/orders/${session.id}` })
 
     console.log('trying add data', data)
-    console.log('to document', ref)
     console.log('returning session', session)
 
     return successResponse(res, {data: session})

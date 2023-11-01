@@ -24,7 +24,7 @@ class FirebaseService {
     const document = collection.pop()
 
     await this.firestore
-      .collection(collection.json('/'))
+      .collection(collection.join('/'))
       .doc(document)
       .set(...params)
   }
