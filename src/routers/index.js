@@ -1,8 +1,6 @@
 const {Router} = require('express')
 const indexRouter = new Router()
 
-const email = require('./email')
-
-indexRouter.use('/v1/email', email)
+indexRouter.use('/v1', require('./v1'))
 
 module.exports = indexRouter
