@@ -25,6 +25,10 @@ exports.checkoutSession = async (req, res) => {
       images: JSON.parse(session.metadata.images),
       timestamp: firestore.FieldValue.serverTimestamp()
     }
+
+    console.log('trying add data', data)
+    console.log('to document', ref)
+
     return successResponse(res, {data: session})
   } catch (error) {
     console.error(error)
