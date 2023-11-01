@@ -2,9 +2,11 @@ require('dotenv').config()
 
 class StripeService {
   stripe
+  appUrl
 
-  constructor(stripeSk) {
+  constructor(stripeSk, appUrl) {
     this.stripe = require('stripe')(stripeSk)
+    this.appUrl = appUrl
   }
 
   checkoutSession = async ({ email, items }) => {
@@ -31,8 +33,8 @@ class StripeService {
       // }],
       line_items: transformedItems,
       mode: 'payment',
-      success_url: `${process.env.APP_URL}/checkout?success=true`,
-      cancel_url: `${process.env.APP_URL}/checkout?canceled=true`,
+      success_url: `${this.appUrl}/checkout?success=true`,
+      cancel_url: `${this.appUrl}/checkout?canceled=true`,
       metadata: {
         email,
         images: JSON.stringify(items.map((item) => item.image)),

@@ -5,6 +5,7 @@ exports.NEXT_AMAZON = {
   STRIPE_SK: process.env.STRIPE_SK_AMAZON || null,
   STRIPE_SIGN: process.env.STRIPE_SIGN_AMAZON || null,
   STRIPE_SHIPPING: process.env.STRIPE_SHIPPING_AMAZON || null,
+  APP_URL: process.env.APP_URL_AMAZON || 'http://localhost:3000'
 }
 
 exports.STRIPE_CHECKOUT_STAT = {

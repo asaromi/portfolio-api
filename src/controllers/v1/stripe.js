@@ -7,7 +7,7 @@ const FirebaseService = require('../../services/firebase')
 const StripeService = require('../../services/stripe')
 const amazonStripeService = new StripeService(NEXT_AMAZON.STRIPE_SK)
 const firebaseService = new FirebaseService(serviceAccount)
-  const firestore = firebaseService.admin.firestore
+const firestore = firebaseService.admin.firestore
 
 exports.checkoutSession = async (req, res) => {
   console.group('checkoutSession')
