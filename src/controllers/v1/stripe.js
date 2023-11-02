@@ -40,11 +40,13 @@ exports.checkoutSession = async (req, res) => {
 }
 
 exports.listenAmazonWebhook = async (req, res) => {
+  const requestBuffer = await buffer(req)
+  const payload = requestBuffer.toString()
   const signature = req.headers['stripe-signature']
 
   try {
     const event = amazonStripeService.stripe.webhooks.constructEvent(
-      req.body,
+      payload,
       signature,
       NEXT_AMAZON.STRIPE_SIGN
     )
