@@ -51,14 +51,13 @@ exports.listenAmazonWebhook = async (req, res) => {
       NEXT_AMAZON.STRIPE_SHIPPING
     )
 
+    console.log('event', event.type)
+
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object
 
       const data = {
-        amount: session.amount_total / 100,
-        amount_shipping: session.total_details.amount_shipping / 100,
-        images: JSON.parse(session.metadata.images),
-        timestamp: firestore.FieldValue.serverTimestamp()
+        updated_at: firestore.FieldValue.serverTimestamp()
       }
 
       return await firebaseService.firestoreSetDocument({
