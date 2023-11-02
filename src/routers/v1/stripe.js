@@ -9,10 +9,6 @@ stripeRouter.post(
 
 stripeRouter.post(
   '/checkout-session',
-  async (req, res, next) => {
-    console.log('req.body', req.body)
-    next()
-  },
   checkoutSession
 )
 
