@@ -22,10 +22,10 @@ exports.checkoutSession = async (req, res) => {
       amount: session.amount_total / 100,
       amount_shipping: session.total_details.amount_shipping / 100,
       images: JSON.parse(session.metadata.images),
-      timestamp: firestore.FieldValue.serverTimestamp()
+      timestamp: firestore.FieldValue.serverTimestamp(),
     }
 
-    await firebaseService.firestoreSetDocument({data, ref: `users/${email}/orders/${session.id}` })
+    await firebaseService.firestoreSetDocument({data, ref: `users/${email}/orders/${session.id}`})
 
     console.log('trying add data', data)
     console.log('returning session', session)
@@ -41,32 +41,40 @@ exports.checkoutSession = async (req, res) => {
 
 exports.listenAmazonWebhook = async (req, res) => {
   const signature = req.headers['stripe-signature']
+  const payload = await buffer(req)
+  const requestBuffer = payload.toString()
 
+  console.log('req.body', req.body)
+  console.log('requestBuffer', requestBuffer)
+
+  let event
   try {
-    const event = amazonStripeService.stripe.webhooks.constructEvent(
-      req.body,
+    event = amazonStripeService.stripe.webhooks.constructEvent(
+      requestBuffer,
       signature,
-      NEXT_AMAZON.STRIPE_SIGN
+      NEXT_AMAZON.STRIPE_SIGN,
     )
 
-    console.log('event', event.type)
+    console.log('successfully construct event', event.type)
 
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object
-
-      const data = {
-        updated_at: firestore.FieldValue.serverTimestamp()
-      }
-
-      return await firebaseService.firestoreSetDocument({
-        data,
-        ref: `users/${session.metadata.email}/orders/${session.id}`,
-        merge: true
-      })
-        .then(() => successResponse(res))
-        .catch((error) => errorResponse(res, {error, statusCode: 500}))
-    }
   } catch (error) {
+    console.error(error)
     return errorResponse(res, {error})
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object
+
+    const data = {
+      updated_at: firestore.FieldValue.serverTimestamp(),
+    }
+
+    return await firebaseService.firestoreSetDocument({
+      data,
+      ref: `users/${session.metadata.email}/orders/${session.id}`,
+      merge: true,
+    })
+      .then(() => successResponse(res))
+      .catch((error) => errorResponse(res, {error, statusCode: 500}))
   }
 }
