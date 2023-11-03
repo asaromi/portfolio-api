@@ -4,7 +4,6 @@ const stripeRouter = new express.Router()
 
 stripeRouter.post(
   '/amazon-webhook',
-  express.raw({type: 'application/json'}),
   listenAmazonWebhook
 )
 

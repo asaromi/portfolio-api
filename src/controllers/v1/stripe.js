@@ -41,28 +41,19 @@ exports.checkoutSession = async (req, res) => {
 
 exports.listenAmazonWebhook = async (req, res) => {
   const signature = req.headers['stripe-signature']
-  const payload = await buffer(req)
-  const requestBuffer = payload.toString()
 
-  console.log('req.body', req.body)
-  console.log('requestBuffer', requestBuffer)
+  console.log('reqBody', req.body)
 
   let event
   try {
     event = amazonStripeService.stripe.webhooks.constructEvent(
-      requestBuffer,
+      req.body,
       signature,
       NEXT_AMAZON.STRIPE_SIGN,
     )
 
-    console.log('successfully construct event', event.type)
+    if (event.type !== 'checkout.session.completed') return successResponse(res, {statusCode: 204})
 
-  } catch (error) {
-    console.error(error)
-    return errorResponse(res, {error})
-  }
-
-  if (event.type === 'checkout.session.completed') {
     const session = event.data.object
 
     const data = {
@@ -74,7 +65,14 @@ exports.listenAmazonWebhook = async (req, res) => {
       ref: `users/${session.metadata.email}/orders/${session.id}`,
       merge: true,
     })
-      .then(() => successResponse(res))
-      .catch((error) => errorResponse(res, {error, statusCode: 500}))
+      .then(() => successResponse(res, {}))
+      .catch((error) => {
+        console.error(error)
+        errorResponse(res, {error, statusCode: 500})
+      })
+  } catch (error) {
+    console.error(error)
+    return errorResponse(res, {error})
   }
+
 }
