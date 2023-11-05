@@ -33,8 +33,8 @@ class StripeService {
       // }],
       line_items: transformedItems,
       mode: 'payment',
-      success_url: `${this.appUrl}/checkout?success=true`,
-      cancel_url: `${this.appUrl}/checkout?canceled=true`,
+      success_url: `${this.appUrl}/checkout/success`,
+      cancel_url: `${this.appUrl}/checkout/canceled`,
       metadata: {
         email,
         images: JSON.stringify(items.map((item) => item.image)),
