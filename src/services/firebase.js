@@ -9,8 +9,6 @@ class FirebaseService {
     this.app = !admin.apps.length ? admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
     }) : admin.app()
-
-    this.firestore = this.app.firestore()
     this.admin = admin
   }
 
