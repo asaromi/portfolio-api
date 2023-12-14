@@ -1,5 +1,5 @@
-const Service = require('../../services/email')
-const {successResponse, errorResponse} = require('../../helpers/response')
+const Service = require('../services/email')
+const {successResponse, errorResponse} = require('../libs/response')
 const emailService = new Service()
 
 exports.sendEmail = async (req, res) => {

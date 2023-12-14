@@ -1,13 +1,10 @@
-const {buffer} = require('micro')
-const {NEXT_AMAZON} = require('../../helpers/constant')
-const {errorResponse, successResponse} = require('../../helpers/response')
-const serviceAccount = require('../../../firebase.key.json')
+const {NEXT_AMAZON} = require('../libs/constant')
+const {errorResponse, successResponse} = require('../libs/response')
 
-const FirebaseService = require('../../services/firebase')
-const StripeService = require('../../services/stripe')
+const StripeService = require('../services/stripe')
+const OrderService = require('../services/order')
 const amazonStripeService = new StripeService(NEXT_AMAZON.STRIPE_SK, NEXT_AMAZON.APP_URL)
-const firebaseService = new FirebaseService(serviceAccount)
-const firestore = firebaseService.admin.firestore
+const firestore = require('../databases/firestore')
 
 exports.checkoutSession = async (req, res) => {
   console.group('checkoutSession')
