@@ -1,7 +1,7 @@
 const {Router} = require('express')
+const {sendEmail} = require('../controllers/email')
 const router = new Router()
 
-router.use('/email', require('./email'))
-router.use('/stripe', require('./stripe'))
+router.post('/send', sendEmail)
 
 module.exports = router

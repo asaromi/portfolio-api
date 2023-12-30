@@ -1,14 +1,16 @@
 const {Router} = require('express')
-const indexRouter = new Router()
+const router = new Router()
 
-const email = require('./email')
-const stripe = require('./stripe')
+const email = require('../email')
+const stripe = require('../stripe')
+const products = require('./product')
 
-indexRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
   return res.status(200).json({ status: 'OK', success: true, message: 'Welcome to global api service' })
 })
 
-indexRouter.use('/email', email)
-indexRouter.use('/stripe', stripe)
+router.use('/email', email)
+router.use('/stripe', stripe)
+router.use('/products', products)
 
-module.exports = indexRouter
+module.exports = router
