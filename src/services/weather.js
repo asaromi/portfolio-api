@@ -1,4 +1,5 @@
 require("dotenv").config()
+const fetch = require("node-fetch")
 
 class WeatherService {
   constructor() {
