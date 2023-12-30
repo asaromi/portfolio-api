@@ -7,7 +7,7 @@ class WeatherService {
   }
 
   async getWeather(cityName) {
-    const response = await fetch(`${this.host}?q=${cityName}`, {
+    const response = await fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${cityName}`, {
       method: "GET",
       headers: {
         "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
