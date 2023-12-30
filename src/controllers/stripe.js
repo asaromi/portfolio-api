@@ -2,7 +2,7 @@ const {NEXT_AMAZON} = require('../libs/constant')
 const {errorResponse, successResponse} = require('../libs/response')
 
 const StripeService = require('../services/stripe')
-const OrderService = require('../services/order')
+// const OrderService = require('../services/order')
 const amazonStripeService = new StripeService(NEXT_AMAZON.STRIPE_SK, NEXT_AMAZON.APP_URL)
 const firestore = require('../databases/firestore')
 
