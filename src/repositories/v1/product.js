@@ -1,28 +1,43 @@
 const prisma = require('../../databases/prisma')
 
 class ProductRepository {
-  #findUniqueProduct = async (where) => await prisma.product.findUnique({where})
+	async #findUniqueProduct(where) {
+		return await prisma.product.findUnique({ where })
+	}
 
-  #updateProduct = async (where, data) => await prisma.product.update({where, data})
+	async #updateProduct(where, data) {
+		return await prisma.product.update({ where, data })
+	}
 
-  #deleteProduct = async (where) => await prisma.product.delete({where})
+	async #deleteProduct(where) {
+		return prisma.product.delete({ where })
+	}
 
-  countProducts = async (where) => await prisma.product.count({where})
+	async countProducts(where) {
+		return await prisma.product.count({ where })
+	}
 
-  findProducts = async (where = {}) => await prisma.product.findMany({where})
+	async findProducts(where = {}) {
+		return await prisma.product.findMany({ where })
+	}
 
-  storeProduct = async (data) => await prisma.product.create({
-    data: {
-      id: data.id,
-      ...data,
-    }
-  })
+	async storeProduct(data) {
+		return await prisma.product.create({
+			data: { id: data.id, ...data }
+		})
+	}
 
-  findProductById = async (id) => await this.#findUniqueProduct({id})
+	async findProductById(id) {
+		return await this.#findUniqueProduct({ id })
+	}
 
-  updateProductById = async (id, data) => await this.#updateProduct({id}, data)
+	async updateProductById (id, data) {
+		return await this.#updateProduct({ id }, data)
+	}
 
-  deleteProductById = async (id) => await this.#deleteProduct({id})
+	async deleteProductById(id) {
+		return await this.#deleteProduct({ id })
+	}
 }
 
 module.exports = ProductRepository

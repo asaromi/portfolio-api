@@ -9,7 +9,7 @@ class StripeService {
     this.appUrl = appUrl
   }
 
-  checkoutSession = async ({ email, items }) => {
+  async checkoutSession({ email, items }) {
     const transformedItems = items.map((item) => ({
       quantity: 1,
       price_data: {

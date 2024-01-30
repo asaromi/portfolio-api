@@ -1,9 +1,16 @@
-const FirebaseService = require('../services/firebase')
-const serviceAccount = require('../../firebase.key.json')
+const FirebaseService = require('../services/amazon/firebase')
+const amazonServiceAccount = require('../../configs/amazon/firebase.key.json')
+const portfolioServiceAccount = require('../../configs/portfolio/firebase.key.json')
 
-const firebaseService = new FirebaseService(serviceAccount)
-function firestore() {
-  return firebaseService.app.firestore()
+const amazonFirebaseService = new FirebaseService(amazonServiceAccount)
+const amazonFirestore = () => amazonFirebaseService.app.firestore()
+
+const portfolioFirebaseService = new FirebaseService(portfolioServiceAccount)
+const portfolioFirestore = () => portfolioFirebaseService.app.firestore()
+
+module.exports = {
+	amazonFirestore,
+	portfolioFirestore,
+	amazonFirebaseService,
+	portfolioFirebaseService
 }
-
-module.exports = firestore

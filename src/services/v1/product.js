@@ -5,7 +5,7 @@ class ProductService {
     this.productRepository = new ProductRepository()
   }
 
-  getProductById = async (id) =>  {
+  async getProductById(id)  {
     const currentProduct = await this.productRepository.findProductById(id)
 
     if (!currentProduct) {
@@ -18,11 +18,11 @@ class ProductService {
     return currentProduct
   }
 
-  getProducts = async (where) => {
+  async getProducts(where) {
     return await this.productRepository.findProducts(where || {})
   }
 
-  createProduct = async (data) => {
+  async createProduct(data) {
     if (!data) {
       const error = new Error()
       error.statusCode = 400
@@ -33,7 +33,7 @@ class ProductService {
     return await this.productRepository.storeProduct(data)
   }
 
-  updateProductById = async (id, product) => {
+  async updateProductById(id, product) {
     if (!id || product?.constructor !== Object) {
       const error = new Error()
       error.statusCode = 400
@@ -53,7 +53,7 @@ class ProductService {
     return currentProduct
   }
 
-  deleteProductById = async (id)=> {
+  async deleteProductById(id) {
     if (!id) {
       const error = new Error()
       error.statusCode = 400
@@ -64,7 +64,7 @@ class ProductService {
     return await this.productRepository.deleteProductById(id)
   }
 
-  isProductExistsById = async (id) => {
+  async isProductExistsById(id) {
     if (!id) {
       const error = new Error()
       error.statusCode = 400
